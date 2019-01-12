@@ -1,0 +1,53 @@
+#image {
+	height: 80%; 
+	width: 80%;
+	margin: 10%;
+	border-width: 10%;
+	border-radius: 100%;
+	border:solid 1px;
+	border-color: black;
+}
+
+#bod {
+	border-color: black;
+	border: solid 1px;
+}
+
+#n1 {
+	padding: 5%;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+h1 {
+	padding: 5%;
+}
+
+img {
+	padding: 6%;
+	height: 20%;
+	width: 100%;
+}
+
+#s1 {
+	height: 15%;
+	overflow-y: scroll;
+}
+
+div.ex4 {
+  width: 100%;
+  height: 150px;
+  overflow: visible;
+}
+
+.solid {
+	margin-top: 0.5px;
+	margin-top: 0.5px;
+	margin-top: auto;
+	margin-top: auto;
+	border-width: 1px;
+	border-color: black;
+
+}
