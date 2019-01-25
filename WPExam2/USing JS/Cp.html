@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Comments Page1</title>
+	<link rel="stylesheet" href="quiz.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+	function reset() {
+		document.getElementById("myName").value = '';
+		document.getElementById("myText").value = '';
+		document.getElementById("sk").value = '';
+        document.getElementById("myText2").value = '';
+        location.reload()
+    }
+
+	function myFunction() {
+		var key = "MSIT1234";
+		var val = document.getElementById("myName").value;
+		var val1 = document.getElementById("myText").value;
+		var okey = document.getElementById("sk").value;
+		if (val.length === 0 || val1.length === 0) {
+			console.log("hi");
+			document.getElementById("demo").innerHTML = "The name/comments Field is empty";
+		}
+		else if(okey !== key) {
+            document.getElementById("demo").innerHTML = "The password is incorrect";
+		}
+		else {
+            function Commentslist(val, val1) {
+		        this.Name = val;
+		        this.tcom = val1;
+		    }
+
+		    document.getElementById("myName").value = '';
+		    document.getElementById("myText").value = '';
+		    document.getElementById("sk").value = '';
+
+		    document.getElementById("myText2").value = val1 + "\n               --" + val + '\n' + document.getElementById("myText2").value;
+		    }
+	}
+	</script>
+</head>
+<body>
+	<h1>Form Page</h1>
+    Name: <input type="text" id="myName" value="">
+    <br>
+    Comments:<br>
+    <textarea name="message" rows="10" cols="30" id = "myText" value = "">
+    </textarea><br>
+    SecretKey:<br>
+    <input type="text" name="key" id = "sk" value = ""><br>
+    <br>
+    <button onclick="myFunction()">Post Comment</button>
+    <p id = "demo"></p>
+    <textarea name="message" rows="10" cols="30" id = "myText2" value = "">
+    </textarea><br>
+    <button onclick="reset()">Reset</button>
+</body>
+</html>
