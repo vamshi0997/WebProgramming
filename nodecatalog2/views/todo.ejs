@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Catalog List</title>        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link href = "/assets/styles.css" rel = "stylesheet" type = "text/css"/>
+        <script src="./assets/todo-list.js"></script>
+    </head>
+    <body>
+        <h3>SmartPhone catalog...</h3>
+        <!-- <p>Title:</p>
+        <p>Description:</p>
+        <p>Quantity:</p>
+        <p>image:</p> -->
+        <% for (var i = 0; i < todos.products.length; i++) { %>
+            <p>Title: <%=todos.products[i].title %></p>
+            <p>Description: <%=todos.products[i].description %></p>
+            <img src= "/assets/<%=todos.products[i].image %>" width= "100px" height= "100">
+            <p>Quantity: <%=todos.products[i].quantity %></p>
+            <button type = "submit">Delete</button>
+            <button type = "submit" onClick = "show()">Edit</button>
+            <form>
+                <input type = "text" name = "title" placeholder="title" required/>
+                <input type = "text" name = "description" placeholder="description" required/>
+                <input type = "text" name = "quantity" placeholder="quantity" required/>
+                <button type = "submit">Submit</button>
+            </form>
+            
+            <p>---------------------------------------------</p>
+        <%} %>
+        <!-- <div id = "catalog-table">
+            <form>
+                <input type = "text" name = "item" placeholder="Add new item.." required/>
+                <button type="submit">Add Item</button>
+            </form>
+            <ul>
+                <% for (var i = 0; i < todos.length; i++) { %>
+                <li><%=todos[i].item %></li>
+                <%} %>
+            </ul>
+        </div> -->
+    </body>
+</html>
