@@ -1,25 +1,22 @@
 {
-  "name": "js-playlist",
+  "name": "nodecatalog2",
   "version": "1.0.0",
-  "description": "todo app",
+  "description": "product catalog",
   "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iamshaunjp/node-js-playlist.git"
+    "url": "https://github.com/vamshi0997/WebProgramming/tree/master/nodecatalog2"
   },
+  "keywords": [
+    "exam"
+  ],
   "author": "me",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iamshaunjp/node-js-playlist/issues"
-  },
-  "homepage": "https://github.com/iamshaunjp/node-js-playlist#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "mongoose": "^5.4.8"
-  }
+  "license": "ISC"
 }

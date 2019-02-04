@@ -2,30 +2,53 @@
     <head>
         <title>Catalog List</title>        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href = "/assets/styles.css" rel = "stylesheet" type = "text/css"/>
-        <script src="./assets/todo-list.js"></script>
+        <link href = "../public/assets/styles.css" rel = "stylesheet" type = "text/css"/>
+        <script src="../public/assets/todo-list.js"></script>
+        <script>
+            var tmp ;
+                function show(i) {
+                    //alert("hi");
+                    document.getElementById(i).innerHTML += '<br>' + '<br>' + '<input type = "text" id = "name" name = "title" placeholder="title" required/>' + '<br>' + '<br>';
+                    
+                    document.getElementById(i).innerHTML += '<input type = "text" name = "description" id = "description" placeholder="description" required/>' + '<br>'+ '<br>';
+                    document.getElementById(i).innerHTML += '<input type = "text" name = "quantity" id = "quantity" placeholder="quantity" required/>' + '<br>'+ '<br>';
+                    document.getElementById(i).innerHTML += '<button type="submit" onClick = fun1('+i+')>submit</button>';
+                };
+
+                function fun1(i) {
+                    console.log(i);
+                    var name = document.getElementById("name").value;
+                    var description = document.getElementById("description").value;
+                    var quantity = document.getElementById("quantity").value;
+                    console.log("inside");
+
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if(this.readyState == 4 && (this.status == 200 || this.status==304)) {
+                            tmp=this.responseText;
+                        }
+                    };
+
+                    xhttp.open("GET", "/edit/" + i + "-" + name + "-" + description + "-" + quantity, false);
+                    xhttp.send();
+                    location.reload();                     
+                };
+
+        </script>
     </head>
     <body>
         <h3>SmartPhone catalog...</h3>
-        <!-- <p>Title:</p>
-        <p>Description:</p>
-        <p>Quantity:</p>
-        <p>image:</p> -->
-        <% for (var i = 0; i < todos.products.length; i++) { %>
-            <p>Title: <%=todos.products[i].title %></p>
-            <p>Description: <%=todos.products[i].description %></p>
-            <img src= "/assets/<%=todos.products[i].image %>" width= "100px" height= "100">
-            <p>Quantity: <%=todos.products[i].quantity %></p>
-            <button type = "submit">Delete</button>
-            <button type = "submit" onClick = "show()">Edit</button>
-            <form>
-                <input type = "text" name = "title" placeholder="title" required/>
-                <input type = "text" name = "description" placeholder="description" required/>
-                <input type = "text" name = "quantity" placeholder="quantity" required/>
-                <button type = "submit">Submit</button>
-            </form>
-            
+        <% for (var i = 0; i < todos.length; i++) { %>
+            <div id = <%=i%>>
+            <p>Title: <%=todos[i].title %></p>
+            <p>Description: <%=todos[i].description %></p>
+            <img src= "/<%=todos[i].image %>" width= "100px" height= "100">
+            <p>Quantity: <%=todos[i].quantity %></p>
+            <button type = "submit" onClick = 'delete_(<%=i%>)'>Delete</button>
+            <button type = "submit" onClick = 'show(<%=i%>)' >Edit</button>
+            </div>
             <p>---------------------------------------------</p>
+    
         <%} %>
         <!-- <div id = "catalog-table">
             <form>

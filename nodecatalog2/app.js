@@ -1,5 +1,5 @@
 var express = require('express');
-var catalogController = require('./controllers/catalogcontroller');
+var Controller = require('./controllers/catalogcontroller');
 
 var app = express();
 
@@ -7,10 +7,10 @@ var app = express();
 app.set('view engine', 'ejs');
 
 //static files
-app.use(express.static('./public'));
+app.use(express.static(__dirname +'/public/assets'));
 
 //fire controllers
-catalogController(app);
+Controller(app);
 
 
 app.listen(4000);

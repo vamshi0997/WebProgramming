@@ -1,68 +1,70 @@
-// var data = {
-// 	"products": [{
-// 			"title": "Samsung Galaxy J6 Smart Phone 64 GB, 4 GB RAM, Blue",
-// 			"description": "Super AMOLED Display with 1480 x 720 (HD+) Resolution",
-// 			"image": "1.jpeg",
-// 			"quantity":"10"
-// 		},
-// 		{
-// 			"title": "Mi A2 4GB + 64GB | 6GB + 128GB",
-// 			"description": "15.2cm (5.99) large display",
-// 			"image": "2.jpeg",
-// 			"quantity":"20"
-// 		},
-// 		{
-// 			"title": "Apple iphone 32GB",
-// 			"description": "11.4 cm(4.7)display",
-// 			"image": "3.jpeg",
-// 			"quantity":"30"
-// 		},
-// 		{
-// 			"title": "red mi note 6 pro",
-// 			"description": "15.9 cm (6.26 inch) FHD+ Display with Resolution ",
-// 			"image": "4.jpeg",
-// 			"quantity":"40"
-// 		}
-// 	]
-// };
-
-
-
 //var currentSearchResult = 'example'
 
 const fs = require('fs');
 
 let rawdata = fs.readFileSync('public/assets/catalog.json');  
 let data = JSON.parse(rawdata);  
-
+//console.log(data);
 var bodyParser = require('body-parser');
-//var mongoose = require('mongoose');
 
-//connect db
-//mongoose.connect('mongodb://test:test1234@ds117535.mlab.com:17535/todo', {useNewUrlParser: true});
-
-//create schema
-// var todoSchema = new mongoose.Schema({
-//     item: String
-// });
-
-// var Todo = mongoose.model('Todo', todoSchema);
-// var itemOne = Todo({item: 'buy flowers'}).save(function(err) {
-//     if(err) throw err;
-//     console.log('item saved');
-// });
-
-//var data = [{item:'Watching movies'}, {item: 'playing games'}, {item: 'reading books'}, {item: 'cricket'}];
-
-//var urlencodedParser = bodyParser.urlencoded({extended: false});
 module.exports = function(app) {
 
-app.get('/todo', function(req, res) {
+app.get('/', function(req, res) {
     //get from mongo
-
-    res.render('todo', {todos: data});
+    res.render('todo', {todos: data.products});
     
 });
+
+app.get('/edit/:id-:name-:description-:quantity', function(req, res) {
+    //get from mongo
+
+    
+    rawdata = fs.readFileSync('public/assets/catalog.json');  
+      data = JSON.parse(rawdata);
+      data.products[req.params.id].title=req.params.name
+      data.products[req.params.id].description=req.params.description
+      data.products[req.params.id].quantity=req.params.quantity
+      
+      console.log(data);
+      data2 = JSON.stringify(data);
+      fs.writeFileSync('public/assets/catalog.json', data2);
+      
+      
+    res.send(req.params);
+});
+
+app.get('/delete/:id', function(req, res) {
+    //get from mongo
+
+    
+    rawdata = fs.readFileSync('public/assets/catalog.json');  
+      data = JSON.parse(rawdata);
+      /*
+      data.products[req.params.id].title=req.params.name
+      data.products[req.params.id].description=req.params.description
+      data.products[req.params.id].quantity=req.params.quantity
+      */
+    tmp = []
+    for(var k = 0 ; k<data.products.length;k++) {
+        if(k!=req.params.id) {
+            tmp.push(data.products[k])
+        }
+    }
+    data.products=tmp;
+
+
+      //console.log(data);
+      data2 = JSON.stringify(data);
+      fs.writeFileSync('public/assets/catalog.json', data2);
+      
+      
+    res.send(req.params);
+});
+
+
+
+
+
 
 // app.post('/todo', urlencodedParser,function(req, res) {
 //     //get data from view and add it to mongo

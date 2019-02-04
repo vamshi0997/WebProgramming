@@ -1,34 +1,14 @@
-$(document).ready(function(){
+function delete_(i) {
+  console.log(i);
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && (this.status == 200 || this.status==304)) {
+          tmp=this.responseText;
+      }
+  };
 
-  $('form').on('submit', function(){
-
-      var item = $('form input');
-      var todo = {item: item.val()};
-
-      $.ajax({
-        type: 'POST',
-        url: '/todo',
-        data: todo,
-        success: function(data){
-          //do something with the data via front-end framework
-          location.reload();
-        }
-      });
-
-      return false;
-
-  });
-
-  $('li').on('click', function(){
-      var item = $(this).text().replace(/ /g, "-");
-      $.ajax({
-        type: 'DELETE',
-        url: '/todo/' + item,
-        success: function(data){
-          //do something with the data via front-end framework
-          location.reload();
-        }
-      });
-  });
-
-});
+  xhttp.open("GET", "/delete/" + i , false);
+  xhttp.send();
+  location.reload();                     
+};
