@@ -1,0 +1,24 @@
+<!-- <p>{{ncart[0].product[0].title}}</p> -->
+<div class = "row">
+    <div *ngIf = "searchdata != null;">
+  <div *ngFor = "let c of fcart; index as i;">
+    <div *ngIf = "c.title.toLowerCase().includes(searchdata.toLowerCase())">
+      <div class = "col-sm-3">
+          <div class="card">
+              <a routerLink = "/productinfo/{{c.id}}"><img src="../../assets/{{c.image}}" alt="Dell" style="width:100%; height:100%"></a>
+              <h4>{{c.title}}</h4>
+              <p class="price">price: {{c.price}}</p>
+              <p>Rating: {{c.rating}}</p>
+              <p><button (click) = "addc(c)">Add to Cart</button></p>
+              <a (click) = "gif(c.pid)" routerLink = "/productinfo" class="btn btn-primary">Getinfo</a>
+          </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<div *ngIf = "searchdata == null">
+    <h1>Your Search Is Empty</h1>
+</div>
+  
+  
